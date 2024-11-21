@@ -12,7 +12,7 @@ def read_csv(path, words_column=None, definitions_column=None, **kwargs):
         **kwargs: Additional keyword arguments to pass to the `pandas.read_csv` function.
 
     Returns:
-        pd.DataFrame: The loaded DataFrame.
+        pd.DataFrame: The loaded DataFrame. #change this to our class
     """
     if not os.path.isfile(path):
         raise FileNotFoundError(f"The file '{path}' does not exist.")
