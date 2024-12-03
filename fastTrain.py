@@ -1,4 +1,4 @@
-from dataHandle import TrainData, TestData
+from dataset import TrainData, TestData
 import pickle 
 from pydantic import BaseModel
 
@@ -21,7 +21,7 @@ class FastTrain(BaseModel):
   def run_train(self):
     # run python code given the specs
     print("saving fastTrain specs")
-    with open('fastTrain.pickle', 'wb') as handle:
+    with open('./fastTrain.pickle', 'wb') as handle:
         pickle.dump(self, handle, protocol=pickle.HIGHEST_PROTOCOL)
     print("Saved")
     # run python code
