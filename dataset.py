@@ -66,7 +66,7 @@ class TestFile(BaseModel):
     
     defs = []
     ids = []
-    for i in data:
+    for i in tqdm(data, desc="extracting data"):
       defs.append(i[def_h])
       ids.append(i[id_h])
     return TestData(defs=defs, ids=ids)

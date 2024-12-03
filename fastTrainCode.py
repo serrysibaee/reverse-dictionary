@@ -1,4 +1,4 @@
-from fastTrainO import FastTrain
+from fastTrain import FastTrain
 from dataset import TrainData, TestData
 print("importing libraries")
 import pytorch_lightning as pl
@@ -10,6 +10,7 @@ from sentence_transformers import SentenceTransformer
 import json 
 import tqdm
 import pickle
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
 # read fastTrain pickle
 print("reading config file")
