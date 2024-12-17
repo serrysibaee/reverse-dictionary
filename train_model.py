@@ -1,5 +1,6 @@
 # build and train models (using pytorch lighting)
 # Training code 
+print("importing Training libraries ................")
 import pydantic
 from datetime import datetime
 import pytorch_lightning as pl

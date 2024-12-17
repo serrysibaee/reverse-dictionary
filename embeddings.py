@@ -1,5 +1,5 @@
 # build embedding system with hugginface models for texts
-print("Loading libraries...")
+print("Loading Embeddings libraries...")
 from pydantic import BaseModel
 from typing import Optional
 from dataset import TrainData, TestData
