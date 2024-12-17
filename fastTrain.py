@@ -1,4 +1,4 @@
-from dataset import TrainData, TestData
+from reverse_dictionary.dataset import TrainData, TestData
 import pickle 
 from pydantic import BaseModel
 

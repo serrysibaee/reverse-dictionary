@@ -1,5 +1,5 @@
-from fastTrain import FastTrain
-from dataset import TrainData, TestData
+from reverse_dictionary.fastTrain import FastTrain
+from reverse_dictionary.dataset import TrainData, TestData
 print("importing libraries")
 import pytorch_lightning as pl
 import torch

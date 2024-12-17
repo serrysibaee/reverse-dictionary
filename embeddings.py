@@ -2,7 +2,7 @@
 print("Loading Embeddings libraries...")
 from pydantic import BaseModel
 from typing import Optional
-from dataset import TrainData, TestData
+from reverse_dictionary.dataset import TrainData, TestData
 from sentence_transformers import SentenceTransformer
 import transformers # import models 
 from transformers import AutoTokenizer, AutoModel
