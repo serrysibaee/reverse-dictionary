@@ -18,6 +18,7 @@ class RDTrainer(pydantic.BaseModel):
   lr:float
   epochs:int
   trained_model_name:str
+  save_checkpoint:bool = False
   batch_size:int = 128
   _model:pl.LightningModule = None
   ready_model:pl.LightningModule = None
@@ -31,6 +32,7 @@ class RDTrainer(pydantic.BaseModel):
     batch_size = self.batch_size
     input_size = len(self.train_embds.embeds[0])
     glosses_emb = self.train_embds.embeds 
+    save_checkpoint = self.save_checkpoint
 
     loss = torch.nn.MSELoss()
     inputs = torch.tensor(glosses_emb)
@@ -98,7 +100,7 @@ class RDTrainer(pydantic.BaseModel):
           return train_loader
 
 
-    trainer = Trainer(max_epochs=self.epochs, devices=[0])
+    trainer = Trainer(max_epochs=self.epochs, devices=[0], enable_checkpointing=save_checkpoint)
     model = MLP(input_size,512*8,512*4,512*2,512,len(self.train_embds.outputs[0]))
 
     return trainer, model
@@ -107,7 +109,7 @@ class RDTrainer(pydantic.BaseModel):
     print(f"creating the model {self.trained_model_name} ...")
     if self.ready_model:
       model = self.ready_model
-      trainer = Trainer(max_epochs=self.epochs, devices=[0])
+      trainer = Trainer(max_epochs=self.epochs, devices=[0], enable_checkpointing=self.save_checkpoint)
     else:
       trainer, model = self.model_maker() 
     print(f"Training the model ... {self.trained_model_name} time {self.now}")
@@ -150,31 +152,3 @@ class RDTrainer(pydantic.BaseModel):
           json.dump(preds, f, indent=4)
 
       print(f"Predictions saved to {output_file}")
-
-
-
-
-
-def main():
-    # train_embds: TrainEmbeddings
-    # test_embds:  TestEmbeddings
-    # lr:float
-    # epochs:int
-    # trained_model_name:str
-    # batch_size:int = 128
-    # ready_model:pl.LightningModule = None
-    # now:str = datetime.now().strftime("%Y-%m-%d|%H:%M:%S")
-  
-  rdTrainer = RDTrainer(
-      train_embds=trainEmbeddingsBERT,  # Corrected field name
-      test_embds=testEmbeddingsBERT,   # Corrected field name
-      lr=1e-4,
-      epochs=1,
-      trained_model_name="FirstTryBERT")
-  
-  rdTrainer.train()
-  rdTrainer.eval()
-
-
-if __name__ == "__main__":
-    main()
