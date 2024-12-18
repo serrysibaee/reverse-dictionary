@@ -21,7 +21,7 @@ class RDTrainer(pydantic.BaseModel):
   save_checkpoint:bool = False
   batch_size:int = 128
   _model:pl.LightningModule = None
-  ready_model:pl.LightningModule = None
+  ready_model:pl.LightningModule = None # put your specific model here
   now:str = datetime.now().strftime("%Y-%m-%d|%H:%M:%S")
   
   class Config:

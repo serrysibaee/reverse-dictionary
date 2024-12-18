@@ -29,7 +29,7 @@ class TrainFile(BaseModel):
     words = []
     defs = []
     embds = [] if emb_h else None
-    for i in tqdm(data, desc="extracting data"):
+    for i in tqdm(data, desc="extracting json data ..."):
       words.append(i[word_h])
       defs.append(i[definition_h])
       embds.append(i[emb_h]) if emb_h else None
@@ -57,28 +57,38 @@ class TrainFile(BaseModel):
 
 
 class TestFile(BaseModel):
-  path: Path
-  kind: str
-  def _extract_data_json(self,def_h:str, id_h:str):
-    # open json
-    with open(self.path, "r") as f:
-      data = json.load(f)
-    
-    defs = []
-    ids = []
-    for i in tqdm(data, desc="extracting data"):
-      defs.append(i[def_h])
-      ids.append(i[id_h])
-    return TestData(defs=defs, ids=ids)
+    path: Path
+    kind: str
 
-  def _extract_data_csv(self,def_h:str, id_h:str):
-    ...
+    def _extract_data_json(self, def_h: str, id_h: str):
+        with open(self.path, "r") as f:
+            data = json.load(f)
+        
+        defs = []
+        ids = []
+        for i in tqdm(data, desc="extracting data"):
+            defs.append(i[def_h])
+            ids.append(i[id_h])
+        return TestData(defs=defs, ids=ids)
 
-  def extract_data(self, def_h:str, id_h:str):
-    if self.kind == "json":
-      return self._extract_data_json(def_h, id_h) 
-    if self.kind == "csv":
-      return self._extract_data_csv(def_h, id_h)
+    def _extract_data_csv(self, def_h: str, id_h: str):
+        # Open the CSV file
+        with open(self.path, "r") as f:
+            reader = csv.DictReader(f)  # Read CSV rows as dictionaries
+
+            defs = []
+            ids = []
+            for row in tqdm(reader, desc="extracting data from csv"):
+                defs.append(row[def_h])  # Extract the value of the definition column
+                ids.append(row[id_h])  # Extract the value of the ID column
+
+        return TestData(defs=defs, ids=ids)
+
+    def extract_data(self, def_h: str, id_h: str):
+        if self.kind == "json":
+            return self._extract_data_json(def_h, id_h) 
+        if self.kind == "csv":
+            return self._extract_data_csv(def_h, id_h)
   
 
 

@@ -65,7 +65,7 @@ def create_train_embds_BERT(model_name:str,data: TrainData,batch_size:int=128):
 
     return TrainEmbeddings(embeds=defs_embds, outputs=words_embds)
 
-def create_test_embds_BERT(model_name:str, data: TestData,batch_size: int=128):
+def create_test_embds_BERT(model_name:str, data: TestData,batch_size:int= 128):
     print("Preparing the Test Sentence Model ...")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModel.from_pretrained(model_name).to(device)
