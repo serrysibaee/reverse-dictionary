@@ -118,3 +118,21 @@ fast_train = FastTrain(
 
 # Run the training setup
 fast_train.run_train()
+```
+```bibtex
+@inproceedings{sibaee-2024-reverse-dictionary,
+   title = "{Reverse} {Dictionary} {Toolkit} Library: An Open Source Python Toolkit for Reverse Dictionary Tasks",
+   author = "Sibaee, Serry",
+   booktitle = "Proceedings of the [Conference Name or Workshop Name]",
+   month = dec,
+   year = "2024",
+   address = "Riyadh, Saudi Arabia",
+   publisher = "RIOTU Labs, Prince Sultan University",
+   url = "[repository_link]",
+   pages = "[start_page]--[end_page]",
+   abstract = "We present the Reverse Dictionary Toolkit Library, a collection of open-source tools for performing reverse dictionary tasks using embeddings and machine learning techniques. This toolkit is designed to facilitate the creation of reverse dictionaries and other NLP applications. In this paper, we describe the architecture of the toolkit, its components, and its capabilities.",
+   language = "English",
+   ISBN = "[ISBN_number]",
+}
+```
+
