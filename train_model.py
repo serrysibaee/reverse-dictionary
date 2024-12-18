@@ -9,7 +9,7 @@ import torch.nn as nn
 from pytorch_lightning import Trainer
 from torch.utils.data import Dataset
 import json
-from embeddings import TrainEmbeddings, TestEmbeddings
+from reverse_dictionary.embeddings import TrainEmbeddings, TestEmbeddings
 # import Train and Test embeddings 
 
 class RDTrainer(pydantic.BaseModel):
