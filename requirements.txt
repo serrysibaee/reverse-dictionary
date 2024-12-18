@@ -1,4 +1,5 @@
 pytorch_lightning
 sentence_transformers
+transformers
 pydantic
 tqdm
